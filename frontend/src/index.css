@@ -188,11 +188,6 @@ div:where(.swal2-icon).swal2-error {
     text-align: center;
   }
 
-  .button-text{
-    margin-inline: 20px;
-    padding: 50px  100px;
-    font-size: 70px;
-  }
 
   .warning-icon span{
    font-size: 200px;
@@ -273,6 +268,9 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
 
 /* small interactive screen */
 @media ((max-width: 1080px) and (max-height: 1920px)) {
+  .input-field{
+    width: 90%;
+  }
 
   /* sweet alert modal */
   .swal2-modal{
