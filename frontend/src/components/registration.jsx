@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
-import { useRef, useEffect } from "react";
 import {
   Form,
   redirect,
@@ -10,9 +9,12 @@ import {
 } from "react-router-dom";
 import Styles from "./form.module.css";
 import { loginUser } from "./api";
-import ResultModal from "./Modal";
 
 // using loader to pass the message down
+
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
 
 export const loginLoader = ({ request }) => {
   //   console.log(request.url)
@@ -40,15 +42,20 @@ export const loginAction = async ({ request }) => {
     response.body = true;
     return response;
   } catch (err) {
+    if(err){
+
+      const MySwal = withReactContent(Swal);
+      MySwal.fire({
+        html: <i>{err.message}</i>,
+        icon: "error",
+      });
+    }
     return err.message;
   }
   // It's silly, but it works
 };
 
 const LoginPage = () => {
-  // useRef
-  const dialog = useRef();
-
   // code for logging status with useNavigation hook
 
   const navigation = useNavigation();
@@ -56,31 +63,20 @@ const LoginPage = () => {
   const errorMessage = useActionData();
   console.log(errorMessage);
 
-  useEffect(() => {
-    if (errorMessage) {
-      setTimeout(() => {
-        dialog.current.showModal();
-      }, 2000);
-    }
-  }, [errorMessage]);
+  // useEffect(() => {
+  //   setShowModal(false);
+  //   if(errorMessage){
+  //     setShowModal((prevValue) => prevValue + 1)
+  //     const MySwal = withReactContent(Swal);
+  //     MySwal.fire({
+  //       html: <i>{errorMessage}</i>,
+  //       icon: "error",
+  //     });
+  //   }
+  // }, [showModal])
 
-  // modal close
-  function handleCloseModal() {
-    dialog.current.close();
-  }
-
-  function handleProgressModal() {
-    dialog.current.close();
-  }
   return (
     <>
-      <ResultModal
-        ref={dialog}
-        onCancel={handleCloseModal}
-        onConfirm={handleProgressModal}
-        errorMessage={errorMessage}
-      />
-
       <div className={Styles.login_container}>
         {/* below instead of using the form we wil use Form from the react router */}
         <Form className={Styles.form} method="post" replace>
@@ -100,7 +96,7 @@ const LoginPage = () => {
               placeholder="Phone Number"
             />
           </div>
-          <div className="row input-field">
+          <div className="row input-field  button-style">
             <button
               className={Styles.button}
               disabled={navigation.state === "submitting"}
