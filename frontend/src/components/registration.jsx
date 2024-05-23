@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import {
   Form,
   redirect,
@@ -10,8 +10,7 @@ import {
 } from "react-router-dom";
 import Styles from "./form.module.css";
 import { loginUser } from "./api";
-import ResultModal from "./ResultModal";
-import Modal from "./Modal";
+import ResultModal from "./Modal";
 
 // using loader to pass the message down
 
@@ -27,6 +26,8 @@ export const loginAction = async ({ request }) => {
   const formData = await request.formData();
   const name = formData.get("name");
   const phone = formData.get("phone");
+  console.log(name);
+  console.log(phone);
   const pathname =
     new URL(request.url).searchParams.get("redirectTo") || "/host";
   try {
@@ -39,7 +40,6 @@ export const loginAction = async ({ request }) => {
     response.body = true;
     return response;
   } catch (err) {
-    // console.log(err)
     return err.message;
   }
   // It's silly, but it works
@@ -47,52 +47,45 @@ export const loginAction = async ({ request }) => {
 
 const LoginPage = () => {
   // useRef
-  const modal = useRef();
+  const dialog = useRef();
 
   // code for logging status with useNavigation hook
-  // give us the status
+
   const navigation = useNavigation();
-  //   console.log(navigation);
-
-
-
-  // use of useLoaderData instead of useSearchParams
-
   const loginMssgError = useLoaderData();
   const errorMessage = useActionData();
   console.log(errorMessage);
+
   useEffect(() => {
     if (errorMessage) {
-      modal.current.open();
+      setTimeout(() => {
+        dialog.current.showModal();
+      }, 2000);
     }
   }, [errorMessage]);
 
+  // modal close
+  function handleCloseModal() {
+    dialog.current.close();
+  }
 
-    // modal close
-    function handleCloseModal() {
-      modal.current.close();
-    }
-
-    function handleProgressModal() {
-      modal.current.close();
-    }
+  function handleProgressModal() {
+    dialog.current.close();
+  }
   return (
     <>
-      <Modal ref={modal}>
-        <ResultModal onCancel={handleCloseModal} onConfirm={handleProgressModal} errorMessage={errorMessage} />
-      </Modal>
+      <ResultModal
+        ref={dialog}
+        onCancel={handleCloseModal}
+        onConfirm={handleProgressModal}
+        errorMessage={errorMessage}
+      />
+
       <div className={Styles.login_container}>
         {/* below instead of using the form we wil use Form from the react router */}
         <Form className={Styles.form} method="post" replace>
-          {/* <form action="" className="col"> */}
           <div className="row">
-            <p className="errorlgnmsg">
-              {/* {loginMssgError === null ? "" : loginMssgError} */}
-              {loginMssgError && loginMssgError}
-              {/* {errors === null ? "" : errors.message} */}
-
-              {/* {errorMessage && errorMessage} */}
-            </p>
+            <p className="errorlgnmsg">{loginMssgError && loginMssgError}</p>
           </div>
           <div className="row input-field">
             {/* <label htmlFor="name">Name</label> */}
@@ -102,8 +95,8 @@ const LoginPage = () => {
             {/* <label htmlFor="phone_number">Phone</label> */}
             <input
               type="tel"
-              name="phone_number"
-              id="phone_number"
+              name="phone"
+              id="phone"
               placeholder="Phone Number"
             />
           </div>
