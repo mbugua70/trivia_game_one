@@ -3,7 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose');
 const cors = require("cors");
-const workRouter = require("./routes/workoutRoutes");
+const questionsRouter = require("./routes/questionRoutes");
 const userRouter = require("./routes/user");
 
 const MONGODB_STRING = process.env.MONGODB_STRING;
@@ -43,5 +43,5 @@ app.get("/", (req, res) => {
 // listen for requests
 // workout routes
 
-app.use("/api/workouts", workRouter);
+app.use("/api/questions", questionsRouter);
 app.use("/api/players", userRouter);

@@ -4,27 +4,23 @@ const Schema = mongoose.Schema;
 
 // Defining out Schema structure.
 
-const workoutSchema = new Schema(
+const quizDataSchema = new Schema(
   {
-    title: {
+    text: {
       type: String,
       required: true,
     },
-    reps: {
-      type: Number,
+    answers: {
+      type: Array,
       required: true,
     },
-    load: {
+    correct_answer: {
       type: Number,
-      required: true,
-    },
-    user_id: {
-      type: String,
       required: true,
     },
   },
   { timestamps: true }
 );
 
-const WorkOutModel = mongoose.model("workout", workoutSchema);
-module.exports = WorkOutModel;
+const questionsModel = mongoose.model("sample_one_trivia", quizDataSchema);
+module.exports = questionsModel;
