@@ -11,14 +11,15 @@ const mongoose = require("mongoose");
 // workOut all
 module.exports.question_get_all = async (req, res) => {
   const user_id = req.user._id;
-  //   res.json({ msg: "Get all the workouts" });
+  console.log(user_id);
+
   try {
-    const allQuestions = await questionsModel.find({ user_id });
-    console.log(allWorkOut);
+    const allQuestions = await questionsModel.find({});
+    console.log(allQuestions);
     if (allQuestions.length === 0) {
       return res
         .status(200)
-        .json({ success: true, msg: "You have no workout record available" });
+        .json({ success: true, msg: "You have no questions   available" });
     }
     return res.status(200).json({ success: true, allQuestions });
   } catch (err) {

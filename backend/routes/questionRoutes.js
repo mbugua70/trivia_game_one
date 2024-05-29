@@ -10,4 +10,4 @@ router.use(requireAuth);
 // Get All Workouts
 router.get("/", authController.question_get_all);
 
-// Get Single workout
+module.exports = router;
