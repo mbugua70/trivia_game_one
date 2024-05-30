@@ -27,6 +27,7 @@ export const router = createBrowserRouter(
         loader={playerLoginLoader}
         action={playerLoginAction}
       />
+      <Route path="/trivia" />
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )
