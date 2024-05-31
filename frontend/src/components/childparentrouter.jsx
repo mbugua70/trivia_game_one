@@ -11,10 +11,11 @@ import LoginPage from "./registration";
 
 // loaders
 import { loginLoader as playerLoginLoader } from "./registration";
-
 // actions
 import { loginAction as playerLoginAction } from "./registration";
+import { quizLoader as questionLoader } from "./Quiz";
 import ErrorHandling from "./error";
+import Quiz from "./Quiz";
 
 // import { requireAuth } from "./utilis"
 // import { requireAuth } from "./utilis"
@@ -27,7 +28,7 @@ export const router = createBrowserRouter(
         loader={playerLoginLoader}
         action={playerLoginAction}
       />
-      <Route path="/trivia" />
+      <Route path="/trivia" element={<Quiz />} loader={questionLoader} />
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )

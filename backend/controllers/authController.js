@@ -10,8 +10,8 @@ const mongoose = require("mongoose");
 
 // workOut all
 module.exports.question_get_all = async (req, res) => {
-  const user_id = req.user._id;
-  console.log(user_id);
+  // const user_id = req.user._id;
+  // console.log(user_id);
 
   try {
     const allQuestions = await questionsModel.find({});
