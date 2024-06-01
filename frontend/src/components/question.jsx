@@ -2,7 +2,7 @@
 import { useState } from "react";
 import QuestionTimer from "./Quiztimer";
 import Answers from "./answers";
-import Scoreboard from "./Scoreboard";
+// import Scoreboard from "./Scoreboard";
 
 const Question = ({ onSelect, onSkipAnswer, index, QUESTIONS }) => {
   const [answer, setAnswer] = useState({
@@ -60,10 +60,10 @@ const Question = ({ onSelect, onSkipAnswer, index, QUESTIONS }) => {
       <div id="question">
         {/* NOTES::
              KEY USE CASES OTHER THAN IN MAPPING
-             -- keys can be used to reset the component by react.(unmount and remount)
+             -- keys can be used to reset the compfonent by react.(unmount and remount)
              */}
         <div className="question_main">
-          <p></p>
+          <p className="question_number">Question 1 out of 13</p>
           <h2>{QUESTIONS[index].text}</h2>
         </div>
 
