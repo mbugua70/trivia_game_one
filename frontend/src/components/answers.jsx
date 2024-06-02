@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
 
+
 const Answers = ({ onSelect, answer, selectedAnswer, answerState, COLORS }) => {
   const shuffleQuestions = useRef();
 
@@ -32,7 +33,7 @@ const Answers = ({ onSelect, answer, selectedAnswer, answerState, COLORS }) => {
           <li className="answer" key={answer}>
             <button
               onClick={() => onSelect(answer)}
-              className={cssClass}
+              className={`${cssClass} animate__animated animate__zoomIn`}
               style={{ backgroundColor: colorsItem }}
               disabled={answerState !== ""}
             >

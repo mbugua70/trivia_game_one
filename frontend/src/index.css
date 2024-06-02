@@ -334,13 +334,13 @@ div:where(.swal2-icon).swal2-error {
 
 .answer button.correct {
   /* background: linear-gradient(180deg, #a1fa61 0%, #52d482 100%); */
-  background: #5af59d;
+  background-color: #5af59d !important;
   color: #2c203d;
 }
 
 .answer button.wrong {
   /* background: linear-gradient(180deg, #f96fb1 0%, #f52b8c 100%); */
-  background: #f55a98;
+  background-color: #f55a98 !important;
   color: #2c203d;
 }
 
@@ -645,6 +645,11 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
 
 .scoreboard p{
   font-size: 2.5rem;
+}
+
+/* additional animation  */
+.animate__animated.animate__zoomIn{
+  animation-delay: 0.7s;
 }
 
 /* small interactive screen */

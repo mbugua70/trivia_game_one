@@ -71,15 +71,15 @@ const Question = ({
              KEY USE CASES OTHER THAN IN MAPPING
              -- keys can be used to reset the compfonent by react.(unmount and remount)
              */}
-        <div className="question_main">
+        <div className="question_main animate__animated animate__bounceInRight">
           <p className="question_number">
             {`Question ${userAnswers.length + 1}`}
             {` out of  ${QUESTIONS.length}`}
           </p>
-          <h2>{QUESTIONS[index].text}</h2>
+          <h2 className="">{QUESTIONS[index].text}</h2>
         </div>
 
-        <div className="quiz_answers">
+        <div className="quiz_answers animate__animated animate__bounceInRight">
           <Answers
             COLORS={COLORS}
             selectedAnswer={answer.selectedAnswer}

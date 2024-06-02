@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useState, useCallback, useRef, Suspense } from "react";
+import "animate.css";
 import Question from "./question";
 import Summary from "./Summary";
 import { defer, Await, useLoaderData } from "react-router-dom";
