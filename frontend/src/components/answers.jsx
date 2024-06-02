@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
 
-const Answers = ({ onSelect, answer, selectedAnswer, answerState }) => {
+const Answers = ({ onSelect, answer, selectedAnswer, answerState, COLORS }) => {
   const shuffleQuestions = useRef();
 
   if (!shuffleQuestions.current) {
@@ -11,7 +11,7 @@ const Answers = ({ onSelect, answer, selectedAnswer, answerState }) => {
 
   return (
     <ul id="answers">
-      {shuffleQuestions.current.map((answer) => {
+      {shuffleQuestions.current.map((answer, index) => {
         const isAnswered = selectedAnswer === answer;
         let cssClass = "";
         if (answerState === "answered" && isAnswered) {
@@ -24,14 +24,19 @@ const Answers = ({ onSelect, answer, selectedAnswer, answerState }) => {
         ) {
           cssClass = answerState;
         }
+
+        const colorsItems = COLORS.map((items) => items.colors_answers);
+        const colorsItem = colorsItems[0][index];
+
         return (
           <li className="answer" key={answer}>
             <button
               onClick={() => onSelect(answer)}
               className={cssClass}
+              style={{ backgroundColor: colorsItem }}
               disabled={answerState !== ""}
             >
-              {shuffleQuestions.current.indexOf(answer) + 1}. {answer}
+              {answer}
             </button>
           </li>
         );

@@ -4,7 +4,14 @@ import QuestionTimer from "./Quiztimer";
 import Answers from "./answers";
 // import Scoreboard from "./Scoreboard";
 
-const Question = ({ onSelect, onSkipAnswer, index, QUESTIONS }) => {
+const Question = ({
+  onSelect,
+  onSkipAnswer,
+  index,
+  QUESTIONS,
+  COLORS,
+  userAnswers,
+}) => {
   const [answer, setAnswer] = useState({
     selectedAnswer: "",
     isCorrect: null,
@@ -51,6 +58,8 @@ const Question = ({ onSelect, onSkipAnswer, index, QUESTIONS }) => {
       <div className="header_question">
         {/* <Scoreboard /> */}
         <QuestionTimer
+          QUESTIONS={QUESTIONS}
+          userAnswers={userAnswers}
           key={timer}
           timeout={timer}
           onTimeOut={answer.selectedAnswer === "" ? onSkipAnswer : null}
@@ -63,12 +72,16 @@ const Question = ({ onSelect, onSkipAnswer, index, QUESTIONS }) => {
              -- keys can be used to reset the compfonent by react.(unmount and remount)
              */}
         <div className="question_main">
-          <p className="question_number">Question 1 out of 13</p>
+          <p className="question_number">
+            {`Question ${userAnswers.length + 1}`}
+            {` out of  ${QUESTIONS.length}`}
+          </p>
           <h2>{QUESTIONS[index].text}</h2>
         </div>
 
         <div className="quiz_answers">
           <Answers
+            COLORS={COLORS}
             selectedAnswer={answer.selectedAnswer}
             answer={QUESTIONS[index].answers}
             onSelect={handleSelectedAnswer}

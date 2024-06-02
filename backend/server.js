@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const questionsRouter = require("./routes/questionRoutes");
 const userRouter = require("./routes/user");
-
+const colorsRouter = require("./routes/colorsAnswer");
 const MONGODB_STRING = process.env.MONGODB_STRING;
 
 // express app
@@ -45,3 +45,4 @@ app.get("/", (req, res) => {
 
 app.use("/api/questions", questionsRouter);
 app.use("/api/players", userRouter);
+app.use("/api/colors/", colorsRouter);

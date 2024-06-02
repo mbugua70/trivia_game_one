@@ -3,12 +3,12 @@ import { useState, useCallback, useRef, Suspense } from "react";
 import Question from "./question";
 import Summary from "./Summary";
 import { defer, Await, useLoaderData } from "react-router-dom";
-import { getQuestions } from "./api";
+import { fetchData } from "./api";
 
 // data (question)
 
 export const quizLoader = async () => {
-  return defer({ allQuestions: getQuestions() });
+  return defer({ allData: fetchData() });
 };
 
 const Quiz = () => {
@@ -60,9 +60,11 @@ const Quiz = () => {
     <>
       <div id="quiz" className="">
         <Suspense fallback={<h2>Loading.....</h2>}>
-          <Await resolve={questionPromise.allQuestions}>
+          <Await resolve={questionPromise.allData}>
             {(QUESTIONSDATA) => {
-              const QUESTIONS = QUESTIONSDATA.allQuestions;
+              const COLORS = QUESTIONSDATA.colors.colorsData;
+              const QUESTIONS = QUESTIONSDATA.questions.allQuestions;
+
               if (activeQuestionIndex === QUESTIONS.length) {
                 return (
                   <Summary userAnswers={activeQuestion} QUESTIONS={QUESTIONS} />
@@ -70,9 +72,11 @@ const Quiz = () => {
               }
               return (
                 <Question
+                  userAnswers={activeQuestion}
                   key={activeQuestionIndex}
                   index={activeQuestionIndex}
                   QUESTIONS={QUESTIONS}
+                  COLORS={COLORS}
                   onSelect={handleSelectedAnswer}
                   onSkipAnswer={handleSkipAnswer}
                 />
