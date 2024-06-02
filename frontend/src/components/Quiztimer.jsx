@@ -33,12 +33,12 @@ const QuestionTimer = ({ timeout, onTimeOut, mode }) => {
     <>
       <h2>Time</h2>
       {/* <p>{remainingTime > 0 ? countDown | 0 : "0"}</p> */}
-      <progress
+      {/* <progress
         value={remainingTime}
         id="question-time"
         max={timeout}
         className={mode}
-      />
+      /> */}
     </>
   );
 };
