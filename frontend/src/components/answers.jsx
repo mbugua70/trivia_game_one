@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useRef } from "react";
-import wrongPic from "../../public/image/wrong.png";
-import correctPic from "../../public/image/correct.png";
+import { Howl } from "howler";
+import wrongPic from "../assets/image/wrong.png";
+import correctPic from "../assets/image/correct.png";
+import correctSoundFile from "../assets/audio/correct.wav";
+import wrongSoundFile from "../assets/audio/wrong.wav";
 
 const Answers = ({ onSelect, answer, selectedAnswer, answerState, COLORS }) => {
+  // audio object creation
+  const correctSound = new Howl({ src: correctSoundFile });
+  const wrongSound = new Howl({ src: wrongSoundFile });
   const shuffleQuestions = useRef();
-
   if (!shuffleQuestions.current) {
     shuffleQuestions.current = [...answer];
     shuffleQuestions.current.sort(() => Math.random() - 0.5);
@@ -40,9 +45,62 @@ const Answers = ({ onSelect, answer, selectedAnswer, answerState, COLORS }) => {
           isCorrect = false;
         }
 
+        if (answerState === "correct" && isAnswered && isClicked) {
+          // sound correct play
+          correctSound.play();
+          // bubbles pop
+          const count = 200,
+            defaults = {
+              origin: { y: 0.7 },
+            };
+
+          // eslint-disable-next-line no-inner-declarations
+          function fire(particleRatio, opts) {
+            // eslint-disable-next-line no-undef
+            confetti(
+              Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio),
+              })
+            );
+          }
+
+          fire(0.25, {
+            spread: 26,
+            startVelocity: 55,
+          });
+
+          fire(0.2, {
+            spread: 60,
+          });
+
+          fire(0.35, {
+            spread: 100,
+            decay: 0.91,
+            scalar: 0.8,
+          });
+
+          fire(0.1, {
+            spread: 120,
+            startVelocity: 25,
+            decay: 0.92,
+            scalar: 1.2,
+          });
+
+          fire(0.1, {
+            spread: 120,
+            startVelocity: 45,
+          });
+        }
+
+        // wrongSound play
+
+        if (answerState === "wrong" && isAnswered && isClicked) {
+          console.log("sound play");
+          wrongSound.play();
+        }
+
         const colorsItems = COLORS.map((items) => items.colors_answers);
         const colorsItem = colorsItems[0][index];
-        console.log(selectedAnswer);
         return (
           <li className="answer" key={answer}>
             <button
