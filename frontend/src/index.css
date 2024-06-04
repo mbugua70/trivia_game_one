@@ -552,7 +552,6 @@ div:where(.swal2-icon).swal2-error {
 
 
  ::placeholder{
-   text-transform: uppercase;
    color:#1ea62c;
 
  }
@@ -666,10 +665,110 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
   display: block;
 }
 
+.result-modal{
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  background: rgba(0, 0, 0, .4);
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  display: grid;
+  position: fixed;
+  z-index: 1060;
+  inset: 0;
+  box-sizing: border-box;
+  grid-template-areas:
+      "top-start top top-end"
+      "center-start center center-end"
+      "bottom-start bottom-center bottom-end";
+  grid-template-rows: minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);
+  height: 100%;
+  padding: .625em;
+  overflow-x: hidden;
+  transition: background-color .1s;
+}
+
+.result-modal::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.preloader-wrapper.big.active{
+  grid-column: 2;
+    grid-row: 2;
+    place-self: center center;
+}
 
 /* additional animation  */
 .animate__animated.animate__zoomIn{
   animation-delay: 0.7s;
+}
+
+.pagenotfound{
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  display: grid;
+  position: fixed;
+  z-index: 1060;
+  inset: 0;
+  box-sizing: border-box;
+  grid-template-areas:
+      "top-start top top-end"
+      "center-start center center-end"
+      "bottom-start bottom-center bottom-end";
+  grid-template-rows: minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);
+  height: 100%;
+  padding: .625em;
+  overflow-x: hidden;
+  transition: background-color .1s;
+}
+
+.page_not_found{
+  text-align: center;
+  grid-column: 2;
+  grid-row: 2;
+  place-self: center center;
+}
+
+.page_not_found h2{
+  color: #afaeeb;
+  font-size: 12rem;
+  font-weight: bold;
+}
+
+.page_not_found h3{
+  font-weight: bold;
+  color: #000;
+
+}
+
+  .page_not_found p {
+  margin-bottom: 1rem;
+  color: #000;
+  font-size: 2rem;
+}
+
+.page_not_found a{
+  background-color: #0cb436;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.5rem;
+  padding: 0 30px;
+}
+
+.errorHandling{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+
+}
+
+.card .card-content{
+  width: 80% !important;
+}
+
+
+
+.row .col.m6{
+  width: 90%;
+
 }
 
 /* small interactive screen */
@@ -725,7 +824,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
     border: 5px solid #1ea62c !important;
     text-align: center;
     font-size: 52px !important;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: 500;
     max-width: 90% !important;
   }

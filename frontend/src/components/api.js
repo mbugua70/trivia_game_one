@@ -13,13 +13,22 @@ export async function loginUser(creds) {
       message: data.error,
     };
   }
+
   return data;
 }
 
 // getting all question
 
 export async function getQuestions() {
-  const res = await fetch("http://localhost:4040/api/questions");
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) {
+    return;
+  }
+  const res = await fetch("http://localhost:4040/api/questions", {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  });
 
   if (!res.ok) {
     throw {
@@ -37,7 +46,15 @@ export async function getQuestions() {
 // getting colors
 
 export async function getColors() {
-  const res = await fetch("http://localhost:4040/api/colors");
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (!user) {
+    return;
+  }
+  const res = await fetch("http://localhost:4040/api/colors", {
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  });
 
   if (!res.ok) {
     throw {

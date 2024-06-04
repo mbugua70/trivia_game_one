@@ -19,6 +19,9 @@ const Summary = ({ userAnswers, QUESTIONS }) => {
     100 - (answeredCorrectlyPercent + skippedAnswerPercent);
 
   // const skippedAnswerpercent = skippedAnswers/userAnswers.length
+
+  // redirect the user once finish playing
+
   return (
     <>
       <div id="summary">
@@ -48,8 +51,6 @@ const Summary = ({ userAnswers, QUESTIONS }) => {
             } else {
               cssClass += " wrong";
             }
-
-            console.log(answer);
             return (
               <li key={index}>
                 <h3>{index + 1}</h3>

@@ -3,7 +3,7 @@ const authController = require("../controllers/authController");
 const requireAuth = require("../middleware/requireAuth");
 const router = Router();
 
-// router.use(requireAuth);
+router.use(requireAuth);
 
 // routers children
 

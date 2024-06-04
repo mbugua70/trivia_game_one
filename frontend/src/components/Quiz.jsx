@@ -2,13 +2,23 @@
 import { useState, useCallback, useRef, Suspense } from "react";
 import "animate.css";
 import Question from "./question";
+import { redirect } from "react-router-dom";
 import Summary from "./Summary";
+import Preloader from "./Preloader";
 import { defer, Await, useLoaderData } from "react-router-dom";
 import { fetchData } from "./api";
+import { requireAuth } from "./utilis";
 
 // data (question)
 
-export const quizLoader = async () => {
+export const quizLoader = async ({ request }) => {
+  // await requireAuth(request);
+  const pathname = new URL(request.url).pathname;
+  const user = await requireAuth();
+  console.log(user);
+  if (!user) {
+    return redirect(`/?message=You must log in first!!&redirectTo=${pathname}`);
+  }
   return defer({ allData: fetchData() });
 };
 
@@ -23,7 +33,6 @@ const Quiz = () => {
 
   const handleSelectedAnswer = useCallback(
     function handleSelectedAnswer(selectedAnswer) {
-      console.log("Handle fun called");
       // setAnswerState("answered");
       setActiveQuestion((prevAnswer) => {
         return [...prevAnswer, selectedAnswer];
@@ -50,17 +59,12 @@ const Quiz = () => {
     [handleSelectedAnswer]
   );
 
-  //   if (quizCompleted) {
-  //     return <Summary userAnswers={activeQuestion} />;
-  //   }
-
   const questionPromise = useLoaderData();
-  console.log(questionPromise);
 
   return (
     <>
       <div id="quiz" className="">
-        <Suspense fallback={<h2>Loading.....</h2>}>
+        <Suspense fallback={<Preloader />}>
           <Await resolve={questionPromise.allData}>
             {(QUESTIONSDATA) => {
               const COLORS = QUESTIONSDATA.colors.colorsData;

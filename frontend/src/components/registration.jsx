@@ -31,19 +31,17 @@ export const loginAction = async ({ request }) => {
   console.log(name);
   console.log(phone);
   const pathname =
-    new URL(request.url).searchParams.get("redirectTo") || "/host";
+    new URL(request.url).searchParams.get("redirectTo") || "/trivia";
   try {
     const data = await loginUser({ name, phone });
-    localStorage.setItem("loggedin", true);
-    console.log(localStorage.getItem("loggedin"));
+    localStorage.setItem("user", JSON.stringify(data));
     console.log(data.error);
     console.log(pathname);
-    const response = redirect(pathname);
-    response.body = true;
-    return response;
+    // const response = redirect(pathname);
+    // response.body = true;
+    return redirect(pathname);
   } catch (err) {
-    if(err){
-
+    if (err) {
       const MySwal = withReactContent(Swal);
       MySwal.fire({
         html: <i>{err.message}</i>,

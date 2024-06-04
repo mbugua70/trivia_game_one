@@ -9,7 +9,7 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Please insert an name"],
+      required: [true, "Please insert  name"],
     },
     phone: {
       type: Number,
@@ -29,7 +29,7 @@ userSchema.statics.SignUp = async function (name, phone) {
   const userPhone = await this.findOne({ phone });
 
   if (userPhone) {
-    throw Error("Phone already in use");
+    throw Error("You have already played");
   }
 
   const user = await this.create({ name, phone });
