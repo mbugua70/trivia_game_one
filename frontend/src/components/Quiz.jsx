@@ -23,6 +23,7 @@ export const quizLoader = async ({ request }) => {
 };
 
 const Quiz = () => {
+
   // useState for styling answered question
 
   // const [answerState, setAnswerState] = useState("");

@@ -7,5 +7,5 @@ const router = Router();
 // signup routes
 
 router.post("/signup", userAuthController.signUpUser);
-
+router.patch("/signup/:id", userAuthController.player_update);
 module.exports = router;

@@ -764,11 +764,22 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
   width: 80% !important;
 }
 
-
-
 .row .col.m6{
   width: 90%;
 
+}
+
+.alert.alert-danger{
+  text-align: center;
+
+}
+
+.alert.alert-danger p i{
+  font-size: 3rem;
+}
+
+.error_alert_message{
+  font-size: 2rem;
 }
 
 /* small interactive screen */

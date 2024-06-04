@@ -1,4 +1,5 @@
 import { useRouteError } from "react-router-dom";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const ErrorHandling = () => {
   const error = useRouteError();
@@ -11,7 +12,7 @@ const ErrorHandling = () => {
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
                 <h2>
-                  <i className="material-icons">error</i>
+                  <ErrorIcon />
                 </h2>
                 <span className="card-title">
                   <h1>{error.message}</h1>

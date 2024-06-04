@@ -16,11 +16,14 @@ const userSchema = new Schema(
       required: [true, "Please insert phone number"],
       unique: true,
     },
+    score: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
 
-userSchema.statics.SignUp = async function (name, phone) {
+userSchema.statics.SignUp = async function (name, phone, score) {
   // validation
   if (!name || !phone) {
     throw Error("All fields must be filled");
@@ -32,7 +35,7 @@ userSchema.statics.SignUp = async function (name, phone) {
     throw Error("You have already played");
   }
 
-  const user = await this.create({ name, phone });
+  const user = await this.create({ name, phone, score });
 
   return user;
 };

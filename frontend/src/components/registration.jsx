@@ -79,7 +79,16 @@ const LoginPage = () => {
         {/* below instead of using the form we wil use Form from the react router */}
         <Form className={Styles.form} method="post" replace>
           <div className="row">
-            <p className="errorlgnmsg">{loginMssgError && loginMssgError}</p>
+            <div className="errorlgnmsg">
+              {loginMssgError && (
+                <div className="alert alert-danger" role="alert">
+                  <p>
+                    <i className="material-icons">error</i>
+                  </p>
+                  <p className="error_alert_message">{loginMssgError}</p>
+                </div>
+              )}
+            </div>
           </div>
           <div className="row input-field">
             {/* <label htmlFor="name">Name</label> */}

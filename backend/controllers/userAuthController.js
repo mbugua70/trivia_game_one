@@ -14,13 +14,41 @@ const createToken = ({ _id }) => {
 
 
 module.exports.signUpUser = async (req, res) => {
-  const { name, phone } = req.body;
+  const { name, phone, score } = req.body;
 
   try {
-    const user = await UserModel.SignUp(name, phone);
+    const user = await UserModel.SignUp(name, phone, score);
+
+    const userId = user._id;
     const token = createToken(user._id);
-    res.status(200).json({ phone, token });
+    res.status(200).json({ userId, token });
   } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+module.exports.player_update = async (req, res) => {
+  //   res.json({ msg: "Update workout" });
+
+  try {
+    const paramsID = req.params.id;
+    const updatedValue = req.body;
+    if (!mongoose.Types.ObjectId.isValid(paramsID)) {
+      return res.status(404).json({ error: "The player does not exist" });
+    }
+    const updatedPlayer = await UserModel.findByIdAndUpdate(
+      paramsID,
+      updatedValue,
+      { new: true }
+    );
+
+    if (!updatedPlayer) {
+      return res.status(404).json({ error: "No such player" });
+    }
+
+    res.status(200).json({ success: true, updatedPlayer });
+  } catch (err) {
+    console.log(err);
     res.status(400).json({ error: err.message });
   }
 };

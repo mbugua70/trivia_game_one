@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
-import CompltedImage from "../../public/image/completedQuiz.png";
+// import { useNavigate } from "react-router-dom";
+import CompltedImage from "../assets/image/completedQuiz.png";
 
 const Summary = ({ userAnswers, QUESTIONS }) => {
+  // const navigate = useNavigate();
   const skippedAnswers = userAnswers.filter((answer) => answer === null);
   const answeredCorrectly = userAnswers.filter(
     (answer, index) => answer === QUESTIONS[index].answers[0]
