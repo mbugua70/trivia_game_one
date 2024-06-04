@@ -1,8 +1,12 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 // import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import CompltedImage from "../assets/image/completedQuiz.png";
+import { updatePlayer } from "./api";
 
 const Summary = ({ userAnswers, QUESTIONS }) => {
+  const [updateScore, setUpdateScore] = useState({});
   // const navigate = useNavigate();
   const skippedAnswers = userAnswers.filter((answer) => answer === null);
   const answeredCorrectly = userAnswers.filter(
@@ -23,6 +27,20 @@ const Summary = ({ userAnswers, QUESTIONS }) => {
   // const skippedAnswerpercent = skippedAnswers/userAnswers.length
 
   // redirect the user once finish playing
+
+  useEffect(() => {
+    async function updateFun() {
+      const updateValue = {
+        score: answeredCorrectlyPercent,
+      };
+      const updateResult = await updatePlayer(updateValue);
+      setUpdateScore(updateResult);
+    }
+
+    updateFun();
+  }, [answeredCorrectlyPercent]);
+
+  console.log(updateScore);
 
   return (
     <>

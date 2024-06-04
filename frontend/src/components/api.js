@@ -69,6 +69,37 @@ export async function getColors() {
   return data;
 }
 
+export async function updatePlayer(updateData) {
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  if (!user) {
+    return;
+  }
+
+  const id = user.userId;
+  console.log(id);
+  try {
+    const res = await fetch(`http://localhost:4040/api/players/signup/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify(updateData),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to update the player");
+    }
+
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (error) {
+    return error.message;
+  }
+}
+
 export const fetchData = async () => {
   const [colors, questions] = await Promise.all([getColors(), getQuestions()]);
   return { colors, questions };
