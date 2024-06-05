@@ -489,122 +489,6 @@ div:where(.swal2-icon).swal2-error {
   letter-spacing: 0.1rem;
 }
 
-@keyframes slide-in-from-bottom {
-  0% {
-    opacity: 0;
-    transform: translateY(10%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-
-/* big interactive screen */
-@media ((min-width: 2160px) and (min-height: 3840px)){
-  .modal{
-    height: 700px !important;
-    padding-block: 30px;
-  }
-
-  #delete-confirmation h2{
-    font-size: 100px;
-    text-align: center;
-    font-weight: 500;
-  }
-
-  #delete-confirmation p{
-    font-size: 100px;
-    text-align: center;
-  }
-
-
-  .warning-icon span{
-   font-size: 200px;
-  }
-
-
-/* form styling  */
-.input-field{
-  width: 100%;
- }
-
-
- /* form stlying media query */
- .input-field  label{
-   font-size: 20px;
-
- }
-
- .input-field input{
-   box-sizing: border-box !important;
-   margin-block: 25px !important;
-   padding: 120px 60px !important;
-   border: 15px solid #1ea62c !important;
-   font-size: 100px !important;
-   font-weight: 500;
-   text-align: center;
-   color: #000;
- }
-
-
-
- ::placeholder{
-   color:#1ea62c;
-
- }
-
-
-  /* sweet alert modal */
-  .swal2-modal{
-   width: 1400px !important;
-   height: 700px !important;
- }
-
-div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
-   padding:  40px 100px !important;
-   font-size: 80px !important;
- }
-
- div:where(.swal2-icon){
-  width: 140px !important;
-  height: 140px !important;
- }
-
- .swal2-title,  .swal2-html-container i{
-  font-size: 90px;
- }
-
-
- div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{
-  width: 100px !important;
-  top: 4.138em !important;
- }
-
-
- .container{
-   width: 2000px !important;
-   margin-top: 16rem !important;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-
- }
-
- .input-field{
-  width: 100%;
- }
-
-
-
-
- /* sweetAlert modal  */
-
-}
-
-
 /* additional trivia css styling */
 
 .question_main{
@@ -781,6 +665,145 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
 .error_alert_message{
   font-size: 2rem;
 }
+
+.card-content.white-text .icons_error{
+  font-size: 6rem;
+  color: rgb(231, 9, 9);
+}
+
+.card.blue-grey.darken-1{
+  text-align: center;
+  background-color: rgb(247, 230, 230) !important;
+}
+
+.card-content.white-text{
+  margin: 0 auto;
+}
+
+.error_message{
+  color: #4e4c4c !important;
+}
+
+.scores_main {
+  color: #fff;
+}
+
+.timer_main{
+  color: #fff;
+}
+
+
+@keyframes slide-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* big interactive screen */
+@media ((min-width: 2160px) and (min-height: 3840px)){
+  .modal{
+    height: 700px !important;
+    padding-block: 30px;
+  }
+
+  #delete-confirmation h2{
+    font-size: 100px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  #delete-confirmation p{
+    font-size: 100px;
+    text-align: center;
+  }
+
+
+  .warning-icon span{
+   font-size: 200px;
+  }
+
+
+/* form styling  */
+.input-field{
+  width: 100%;
+ }
+
+
+ /* form stlying media query */
+ .input-field  label{
+   font-size: 20px;
+
+ }
+
+ .input-field input{
+   box-sizing: border-box !important;
+   margin-block: 25px !important;
+   padding: 120px 60px !important;
+   border: 15px solid #1ea62c !important;
+   font-size: 100px !important;
+   font-weight: 500;
+   text-align: center;
+   color: #000;
+ }
+
+
+
+ ::placeholder{
+   color:#1ea62c;
+
+ }
+
+
+  /* sweet alert modal */
+  .swal2-modal{
+   width: 1400px !important;
+   height: 700px !important;
+ }
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
+   padding:  40px 100px !important;
+   font-size: 80px !important;
+ }
+
+ div:where(.swal2-icon){
+  width: 140px !important;
+  height: 140px !important;
+ }
+
+ .swal2-title,  .swal2-html-container i{
+  font-size: 90px;
+ }
+
+
+ div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{
+  width: 100px !important;
+  top: 4.138em !important;
+ }
+
+
+ .container{
+   width: 2000px !important;
+   margin-top: 16rem !important;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+
+ }
+
+ .input-field{
+  width: 100%;
+ }
+
+ /* sweetAlert modal  */
+
+}
+
 
 /* small interactive screen */
 @media ((max-width: 1080px) and (max-height: 1920px)) {

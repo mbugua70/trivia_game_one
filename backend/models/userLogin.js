@@ -3,6 +3,8 @@ const { isEmail } = require("validator");
 const validator = require("validator");
 const Schema = mongoose.Schema;
 
+
+
 // Defining out Schema structure.
 
 const userSchema = new Schema(
@@ -12,7 +14,7 @@ const userSchema = new Schema(
       required: [true, "Please insert  name"],
     },
     phone: {
-      type: Number,
+      type: [Number, "Please enter the correct phone Number"],
       required: [true, "Please insert phone number"],
       unique: true,
     },
@@ -34,6 +36,7 @@ userSchema.statics.SignUp = async function (name, phone, score) {
   if (userPhone) {
     throw Error("You have already played");
   }
+
 
   const user = await this.create({ name, phone, score });
 

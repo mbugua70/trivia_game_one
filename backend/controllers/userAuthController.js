@@ -12,6 +12,8 @@ const createToken = ({ _id }) => {
 };
 
 
+// hndle
+
 
 module.exports.signUpUser = async (req, res) => {
   const { name, phone, score } = req.body;

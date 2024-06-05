@@ -17,7 +17,6 @@ import withReactContent from 'sweetalert2-react-content'
 
 
 export const loginLoader = ({ request }) => {
-  //   console.log(request.url)
   return new URL(request.url).searchParams.get("message");
 };
 
@@ -28,25 +27,26 @@ export const loginAction = async ({ request }) => {
   const formData = await request.formData();
   const name = formData.get("name");
   const phone = formData.get("phone");
-  console.log(name);
-  console.log(phone);
+
   const pathname =
     new URL(request.url).searchParams.get("redirectTo") || "/trivia";
   try {
     const data = await loginUser({ name, phone });
     localStorage.setItem("user", JSON.stringify(data));
     console.log(data.error);
-    console.log(pathname);
+
     // const response = redirect(pathname);
     // response.body = true;
     return redirect(pathname);
   } catch (err) {
     if (err) {
-      const MySwal = withReactContent(Swal);
-      MySwal.fire({
-        html: <i>{err.message}</i>,
-        icon: "error",
-      });
+      console.log(err.message);
+
+      // const MySwal = withReactContent(Swal);
+      // MySwal.fire({
+      //   html: <i>{err.message}</i>,
+      //   icon: "error",
+      // });
     }
     return err.message;
   }
@@ -58,8 +58,7 @@ const LoginPage = () => {
 
   const navigation = useNavigation();
   const loginMssgError = useLoaderData();
-  const errorMessage = useActionData();
-  console.log(errorMessage);
+  // const errorMessage = useActionData();
 
   // useEffect(() => {
   //   setShowModal(false);

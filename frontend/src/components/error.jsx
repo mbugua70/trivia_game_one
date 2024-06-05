@@ -12,13 +12,13 @@ const ErrorHandling = () => {
             <div className="card blue-grey darken-1">
               <div className="card-content white-text">
                 <h2>
-                  <ErrorIcon />
+                  <ErrorIcon className="icons_error" />
                 </h2>
                 <span className="card-title">
-                  <h1>{error.message}</h1>
+                  <h1 className="error_message">{error.message}</h1>
                 </span>
                 <p>
-                  <pre>
+                  <pre className="error_status">
                     {error.status} - {error.statusText}
                   </pre>
                 </p>

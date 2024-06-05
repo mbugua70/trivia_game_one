@@ -41,7 +41,7 @@ const Question = ({
 
       setTimeout(() => {
         onSelect(answer);
-      }, 2000);
+      }, 1000);
     }, 1000);
   };
 

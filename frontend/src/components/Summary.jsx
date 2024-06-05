@@ -1,13 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CompltedImage from "../assets/image/completedQuiz.png";
 import { updatePlayer } from "./api";
 
 const Summary = ({ userAnswers, QUESTIONS }) => {
   const [updateScore, setUpdateScore] = useState({});
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const skippedAnswers = userAnswers.filter((answer) => answer === null);
   const answeredCorrectly = userAnswers.filter(
     (answer, index) => answer === QUESTIONS[index].answers[0]
@@ -40,7 +40,18 @@ const Summary = ({ userAnswers, QUESTIONS }) => {
     updateFun();
   }, [answeredCorrectlyPercent]);
 
-  console.log(updateScore);
+  console.log(updateScore.success);
+
+  setTimeout(() => {
+    if (
+      updateScore.success !== undefined &&
+      updateScore.success === true &&
+      userAnswers.length === 7
+    ) {
+      navigate("/");
+      localStorage.removeItem("user");
+    }
+  }, 3000);
 
   return (
     <>
