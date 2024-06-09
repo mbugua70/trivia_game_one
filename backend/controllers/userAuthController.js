@@ -12,7 +12,57 @@ const createToken = ({ _id }) => {
 };
 
 
-// hndle
+// handle error fun
+// handle errors
+const handleErrors = (err) => {
+  console.log(err.message, err.code);
+  let errors = { phone: "", name: "" ,validate: "" };
+  console.log(err.code);
+  // duplicate email error
+  if (err.code === 11000) {
+    errors.phone = "The player already participated";
+    return errors;
+  }
+
+  if (err.message.includes("Please insert phone number")) {
+    errors.phone = "Please insert phone number";
+  }
+
+  if (err.message.includes("Cast to Number failed for value ")) {
+    errors.phone = "Please insert correct phone number";
+  }
+  if (err.message.includes("All fields must be filled ")) {
+    errors.validate = "All fields must be filled ";
+  }
+
+  if (err.message.includes("Please insert  name")) {
+    errors.name = "Please insert name";
+  }
+
+  // validation errors
+  // if (err.message.includes("user validation failed")) {
+  //   // console.log(err);
+  //   Object.values(err.errors).forEach(({ properties }) => {
+  //     // console.log(val);
+  //     // console.log(properties);
+  //     errors[properties.path] = properties.message;
+  //   });
+  // }
+
+  // if (err.message.includes("Incorrect email")) {
+  //   Object.values(err.errors).forEach((properties) => {
+  //     errors[properties.path] = properties.message;
+  //   });
+  // }
+
+  // if (err.message.includes("Incorrect password")) {
+  //   Object.values(err.errors).forEach((properties) => {
+  //     errors[properties.path] = properties.message;
+  //   });
+  // }
+
+  return errors;
+};
 
 
 module.exports.signUpUser = async (req, res) => {
@@ -25,7 +75,8 @@ module.exports.signUpUser = async (req, res) => {
     const token = createToken(user._id);
     res.status(200).json({ userId, token });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    const error = handleErrors(err);
+    res.status(400).json({ error });
   }
 };
 

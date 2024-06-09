@@ -37,7 +37,6 @@ userSchema.statics.SignUp = async function (name, phone, score) {
     throw Error("You have already played");
   }
 
-
   const user = await this.create({ name, phone, score });
 
   return user;

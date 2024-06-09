@@ -40,13 +40,21 @@ export const loginAction = async ({ request }) => {
     return redirect(pathname);
   } catch (err) {
     if (err) {
-      console.log(err.message);
+      if (err.message.phone !== "") {
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+          html: <i>{err.message.phone}</i>,
+          icon: "error",
+        });
+      }
 
-      // const MySwal = withReactContent(Swal);
-      // MySwal.fire({
-      //   html: <i>{err.message}</i>,
-      //   icon: "error",
-      // });
+      if (err.message.name !== "") {
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+          html: <i>{err.message.name}</i>,
+          icon: "error",
+        });
+      }
     }
     return err.message;
   }
