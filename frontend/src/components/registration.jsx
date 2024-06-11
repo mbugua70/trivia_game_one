@@ -90,17 +90,6 @@ const LoginPage = () => {
   const loginMssgError = useLoaderData();
   // const errorMessage = useActionData();
 
-  // useEffect(() => {
-  //   setShowModal(false);
-  //   if(errorMessage){
-  //     setShowModal((prevValue) => prevValue + 1)
-  //     const MySwal = withReactContent(Swal);
-  //     MySwal.fire({
-  //       html: <i>{errorMessage}</i>,
-  //       icon: "error",
-  //     });
-  //   }
-  // }, [showModal])
 
   return (
     <>
