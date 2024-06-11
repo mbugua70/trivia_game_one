@@ -14,7 +14,11 @@ module.exports.question_get_all = async (req, res) => {
   // console.log(user_id);
 
   try {
-    const allQuestions = await questionsModel.find({});
+    const allQuestions = await questionsModel.aggregate([
+      {
+        $sample: { size: 10 },
+      },
+    ]);
     console.log(allQuestions);
     if (allQuestions.length === 0) {
       return res

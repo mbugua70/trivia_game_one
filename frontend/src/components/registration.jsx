@@ -1,20 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
-import {
-  Form,
-  redirect,
-  useActionData,
-  useNavigation,
-  useLoaderData,
-} from "react-router-dom";
+import { Form, redirect, useNavigation, useLoaderData } from "react-router-dom";
 import Styles from "./form.module.css";
 import { loginUser } from "./api";
 
 // using loader to pass the message down
 
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export const loginLoader = ({ request }) => {
   return new URL(request.url).searchParams.get("message");
@@ -33,12 +26,12 @@ export const loginAction = async ({ request }) => {
   try {
     const data = await loginUser({ name, phone });
     localStorage.setItem("user", JSON.stringify(data));
-    console.log(data.error);
 
     // const response = redirect(pathname);
     // response.body = true;
     return redirect(pathname);
   } catch (err) {
+    // console.log(err.includes("Failed to fetch"));
     if (err) {
       if (err.message.phone !== "") {
         const MySwal = withReactContent(Swal);
@@ -55,10 +48,39 @@ export const loginAction = async ({ request }) => {
           icon: "error",
         });
       }
+
+      if (err.message.validate === "All fields must be filled ") {
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+          html: <i>{err.message.validate}</i>,
+          icon: "error",
+        });
+      }
+
+      if (err.message.played !== "") {
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+          html: <i>{err.message.played}</i>,
+          icon: "error",
+        });
+      }
+
+      // failed to fetch
+      if (
+        !err.message.played &&
+        !err.message.validate &&
+        !err.message.name &&
+        !err.message.phone
+      ) {
+        const MySwal = withReactContent(Swal);
+        MySwal.fire({
+          html: <i>Failed to fetch</i>,
+          icon: "error",
+        });
+      }
     }
     return err.message;
   }
-  // It's silly, but it works
 };
 
 const LoginPage = () => {

@@ -137,8 +137,12 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
   animation: slide-down-fade-in 0.3s ease-out forwards;
 }
 progress{
-  padding: 50px 100px;
+  padding: 30px 150px;
   align-self: last baseline;
+}
+
+progress {
+  accent-color: #0cb436;
 }
 .close_parent{
   padding: 20px;
@@ -226,7 +230,7 @@ div:where(.swal2-icon).swal2-error {
 
 #question{
   height: calc( 100vh - 10rem);
-  padding-top: 8rem;
+  padding-top: 4rem;
 }
 
 
@@ -527,6 +531,7 @@ div:where(.swal2-icon).swal2-error {
   height: 14rem;
   padding-block: 1rem;
   top: 0px;
+  margin-bottom: 0px;
 }
 
 .scoreboard{
@@ -912,6 +917,33 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
   color:#1ea62c;
 
 }
+
+/* sweet alert modal */
+.swal2-modal{
+  width: 600px !important;
+  height: 400px !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{
+  padding:  12px 40px !important;
+  font-size: 32px !important;
+}
+
+div:where(.swal2-icon){
+ width: 100px !important;
+ height: 100px !important;
+}
+
+.swal2-title,  .swal2-html-container i{
+ font-size: 50px;
+}
+
+
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{
+ width: 70px !important;
+ top: 3.2em !important;
+}
+
 
 }
 

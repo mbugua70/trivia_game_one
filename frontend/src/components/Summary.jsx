@@ -46,7 +46,7 @@ const Summary = ({ userAnswers, QUESTIONS }) => {
     if (
       updateScore.success !== undefined &&
       updateScore.success === true &&
-      userAnswers.length === 7
+      userAnswers.length === 10
     ) {
       navigate("/");
       localStorage.removeItem("user");

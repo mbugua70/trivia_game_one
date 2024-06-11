@@ -9,6 +9,7 @@ export async function loginUser(creds) {
   const data = await res.json();
   if (!res.ok) {
     console.log(data);
+
     throw {
       message: data.error,
     };

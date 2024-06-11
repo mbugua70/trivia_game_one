@@ -41,26 +41,16 @@ const QuestionTimer = ({
     };
   }, [timeout]);
 
-  let countDown = remainingTime / 1000;
+  // let countDown = remainingTime / 1000;
 
   return (
     <>
-      <div className="scoreboard">
-        <div className="scores_main">
-          <h2>Scores</h2>
-          <p>{isNaN(answeredPercent) ? "0" : answeredPercent}%</p>
-        </div>
-        <div className="timer_main">
-          <h2>Timer</h2>
-          <p>{remainingTime > 0 ? countDown | 0 : "0"}</p>
-        </div>
-      </div>
-      {/* <progress
+      <progress
         value={remainingTime}
         id="question-time"
         max={timeout}
         className={mode}
-      /> */}
+      />
     </>
   );
 };

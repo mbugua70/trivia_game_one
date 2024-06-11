@@ -2,7 +2,7 @@
 import { useState } from "react";
 import QuestionTimer from "./Quiztimer";
 import Answers from "./answers";
-// import Scoreboard from "./Scoreboard";
+
 
 const Question = ({
   onSelect,
@@ -41,8 +41,8 @@ const Question = ({
 
       setTimeout(() => {
         onSelect(answer);
-      }, 1000);
-    }, 1000);
+      }, 2000);
+    }, 0);
   };
 
   let answerState = "";
@@ -55,8 +55,7 @@ const Question = ({
 
   return (
     <>
-      <div className="header_question">
-        {/* <Scoreboard /> */}
+      <div className="semi_header">
         <QuestionTimer
           QUESTIONS={QUESTIONS}
           userAnswers={userAnswers}

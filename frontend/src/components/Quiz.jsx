@@ -8,6 +8,7 @@ import Preloader from "./Preloader";
 import { defer, Await, useLoaderData } from "react-router-dom";
 import { fetchData } from "./api";
 import { requireAuth } from "./utilis";
+import Scoreboard from "./Scoreboard";
 
 // data (question)
 
@@ -23,7 +24,7 @@ export const quizLoader = async ({ request }) => {
 };
 
 const Quiz = () => {
-  // useState for styling answered question
+  let allTimer = 160000;
 
   // const [answerState, setAnswerState] = useState("");
   const [activeQuestion, setActiveQuestion] = useState([]);
@@ -76,15 +77,25 @@ const Quiz = () => {
                 );
               }
               return (
-                <Question
-                  userAnswers={activeQuestion}
-                  key={activeQuestionIndex}
-                  index={activeQuestionIndex}
-                  QUESTIONS={QUESTIONS}
-                  COLORS={COLORS}
-                  onSelect={handleSelectedAnswer}
-                  onSkipAnswer={handleSkipAnswer}
-                />
+                <>
+                  <div className="header_question">
+                    <Scoreboard
+                      QUESTIONS={QUESTIONS}
+                      userAnswers={activeQuestion}
+                      generalTimer={allTimer}
+                    />
+                  </div>
+                  {/* question component */}
+                  <Question
+                    userAnswers={activeQuestion}
+                    key={activeQuestionIndex}
+                    index={activeQuestionIndex}
+                    QUESTIONS={QUESTIONS}
+                    COLORS={COLORS}
+                    onSelect={handleSelectedAnswer}
+                    onSkipAnswer={handleSkipAnswer}
+                  />
+                </>
               );
             }}
           </Await>
